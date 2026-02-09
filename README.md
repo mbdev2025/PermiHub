@@ -17,12 +17,17 @@ PermiHub/
 
 ### Backend
 - **Django 6.0.2** - Framework web Python
-- **Django REST Framework** - API REST
-- **Wagtail CMS** - Gestion de contenu
-- **JWT Authentication** - Authentification sécurisée
-- **Stripe** - Paiements
-- **Celery + Redis** - Tâches asynchrones
+- **Django REST Framework 3.16.1** - API REST
+- **Wagtail CMS 7.3** - Gestion de contenu
+- **JWT Authentication 5.5.1** - Authentification sécurisée
+- **Stripe 14.3.0** - Paiements
+- **Celery 5.6.2 + Redis 7.1.0** - Tâches asynchrones
 - **PostgreSQL / SQLite** - Base de données
+- **Whitenoise 6.11.0** - Fichiers statiques
+- **django-storages 1.14.6** - S3/Storage API
+- **drf-spectacular 0.29.0** - OpenAPI 3 docs
+- **playwright 1.58.0** - Web automation/scraping
+- **pytest 9.0.2** - Tests unitaires et d'intégration
 
 ### Mobile
 - **Flutter 3.2+** - Framework mobile cross-platform

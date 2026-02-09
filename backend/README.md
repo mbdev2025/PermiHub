@@ -1,7 +1,7 @@
 # 🚀 Django Master Stack (Omni-Channel Edition)
 
 > **La stack ultime pour développer des Applications Mobiles, Sites E-commerce, SaaS et Plateformes Web complexes.**
-> *Backend: Django 5 + Wagtail CMS | API: DRF + JWT | Frontend Ready: Mobile & Web*
+> *Backend: Django 6.0.2 + Wagtail CMS 7.3 | API: DRF 3.16.1 + JWT 5.5.1 | Frontend Ready: Mobile & Web*
 
 ## 🌟 Vision
 Cette stack ne se contente pas d'être un backend. C'est un **écosystème complet** conçu pour lancer des projets de haut niveau (Type "Uber", "Shopify custom", "Super App") en quelques minutes. Elle unifie la gestion de contenu (CMS), le commerce, l'automatisation et l'API mobile.
@@ -11,23 +11,23 @@ Cette stack ne se contente pas d'être un backend. C'est un **écosystème compl
 ## 🛠️ Tech Stack & Architecture
 
 ### **Core & API (Mobile First)**
-*   **Django 5.0+** : Le framework web sécurisé et scalable.
-*   **Django REST Framework (DRF)** : Pour construire des API robustes.
-*   **JWT Auth (`simplejwt`)** : Authentification sécurisée pour Apps Mobiles (iOS/Android) & SPA.
-*   **Swagger / OpenAPI (`drf-spectacular`)** : Documentation API interactive automatique.
-*   **CORS Headers** : Prêt pour le développement cross-platform (React Native, Flutter, Next.js).
+*   **Django 6.0.2** : Le framework web sécurisé et scalable.
+*   **Django REST Framework 3.16.1** : Pour construire des API robustes.
+*   **JWT Auth 5.5.1 (`simplejwt`)** : Authentification sécurisée pour Apps Mobiles (iOS/Android) & SPA.
+*   **Swagger / OpenAPI 0.29.0 (`drf-spectacular`)** : Documentation API interactive automatique.
+*   **CORS Headers 4.9.0** : Prêt pour le développement cross-platform (React Native, Flutter, Next.js).
 
 ### **Contenu & E-commerce (Web & Tablette)**
-*   **Wagtail CMS** : Gestion de contenu "Headless" puissante pour blogs, landing pages, et catalogues.
-*   **Stripe (`apps.payments`)** : Module de paiement intégré (Abonnements & One-off).
-*   **Django Filter** : Moteur de filtrage avancé pour catalogues produits (E-commerce).
+*   **Wagtail CMS 7.3** : Gestion de contenu "Headless" puissante pour blogs, landing pages, et catalogues.
+*   **Stripe 14.3.0 (`apps.payments`)** : Module de paiement intégré (Abonnements & One-off).
+*   **Django Filter 25.2** : Moteur de filtrage avancé pour catalogues produits (E-commerce).
 
 ### **Infrastructure & DevOps**
 *   **PostgreSQL Ready** : Configuration production (via `.env`), SQLite par défaut en dev.
-*   **S3 Storage (`django-storages`)** : Stockage cloud des médias (AWS/MinIO) prêt à l'emploi.
-*   **Whitenoise** : Service de fichiers statiques haute performance.
+*   **S3 Storage 1.14.6 (`django-storages`)** : Stockage cloud des médias (AWS/MinIO) prêt à l'emploi.
+*   **Whitenoise 6.11.0** : Service de fichiers statiques haute performance.
 *   **Docker Ready** : (À venir via `orchestrator.py`).
-*   **Celery + Redis** : Files d'attente pour tâches asynchrones.
+*   **Celery 5.6.2 + Redis 7.1.0** : Files d'attente pour tâches asynchrones.
 
 ---
 
