@@ -1,9 +1,12 @@
 { pkgs, ... }: {
-  # Packages à installer
+  # Canal de paquets
+  channel = "stable-24.05";
+
+  # Paquets minimaux et stables
   packages = [
-    pkgs.python312
-    pkgs.python312Packages.pip
-    pkgs.python312Packages.virtualenv
+    pkgs.python311
+    pkgs.python311Packages.pip
+    pkgs.python311Packages.virtualenv
     pkgs.postgresql
     pkgs.redis
     pkgs.git
@@ -11,13 +14,12 @@
 
   # Configuration de l'environnement
   env = {
-    PYTHON_VERSION = "3.12";
+    PYTHON_VERSION = "3.11";
     DJANGO_SETTINGS_MODULE = "config.settings";
   };
 
-  # Commandes de démarrage
   idx = {
-    # Extensions recommandées
+    # Extensions VS Code
     extensions = [
       "ms-python.python"
       "ms-python.vscode-pylance"
@@ -28,27 +30,27 @@
 
     # Workspace configuration
     workspace = {
-      # Lors de la création du workspace
+      # S'exécute UNE SEULE FOIS à la création
       onCreate = {
-        # Backend Django
-        backend-setup = ''
+        setup = ''
+          # Backend Setup
           cd backend
           python3 -m venv venv
           source venv/bin/activate
+          pip install --upgrade pip
           pip install -r requirements.txt
           python manage.py migrate
-        '';
-        
-        # Mobile Flutter
-        mobile-setup = ''
-          cd mobile
-          flutter pub get
+          
+          # Mobile Setup (Si Flutter est présent)
+          if [ -d "../mobile" ]; then
+            cd ../mobile
+            # flutter pub get # Sera géré par l'extension Flutter
+          fi
         '';
       };
 
-      # Lors de l'ouverture du workspace
+      # S'exécute à CHAQUE démarrage
       onStart = {
-        # Démarrer le serveur Django
         django-server = ''
           cd backend
           source venv/bin/activate
@@ -57,7 +59,7 @@
       };
     };
 
-    # Prévisualisation
+    # Prévisualisation Web
     previews = {
       enable = true;
       previews = {
