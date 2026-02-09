@@ -36,6 +36,11 @@ PermiHub/
 - **Go Router** - Navigation
 - **Google Fonts** - Typographie
 
+### Design & UI (AI Driven)
+- **Google Stitch (IA Design)** - Génération de UI et prototypage rapide via Gemini.
+- **Figma** - Collaboration design et export d'assets.
+- **Material Design 3** - Système de composants UI.
+
 ---
 
 ## 🚀 Démarrage Rapide
