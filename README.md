@@ -16,12 +16,12 @@ PermiHub/
 ## 🛠️ Stack Technique
 
 ### Backend
-- **Django 5.1.15** - Framework web Python (⚠️ v6.x nécessite Python 3.12+)
+- **Django 5.1.15** - Framework web Python (Optimisé pour Python 3.11 / IDX)
 - **Django REST Framework 3.16.1** - API REST
 - **Wagtail CMS 7.3** - Gestion de contenu
 - **JWT Authentication 5.5.1** - Authentification sécurisée
 - **Stripe 14.3.0** - Paiements
-- **Celery 5.6.2 + Redis 7.1.0** - Tâches asynchrones
+- **Celery 5.6.2 + Redis 7.1.0** - Tâches asynchrones (Services IDX activés)
 - **PostgreSQL / SQLite** - Base de données
 - **Whitenoise 6.11.0** - Fichiers statiques
 - **django-storages 1.14.6** - S3/Storage API
@@ -31,10 +31,9 @@ PermiHub/
 
 ### Mobile
 - **Flutter 3.2+** - Framework mobile cross-platform
-- **Riverpod** - State management
-- **Dio** - Client HTTP
-- **Go Router** - Navigation
-- **Google Fonts** - Typographie
+- **Riverpod ^2.5.1** - State management
+- **Dio ^5.4.0** - Client HTTP
+- **Go Router ^13.2.0** - Navigation
 
 ### Design & UI (AI Driven)
 - **Google Stitch (IA Design)** - Génération de UI et prototypage rapide via Gemini.
@@ -47,17 +46,11 @@ PermiHub/
 
 > **⚠️ IMPORTANT** : Ce projet supporte **deux modes de développement**
 
-### 🌐 Mode 1 : Project IDX (Recommandé pour débuter)
-**Environnement cloud dans le navigateur - Aucune installation locale requise**
-
-1. Ouvrez le projet dans [Project IDX](https://idx.google.com)
-2. IDX va automatiquement :
-   - Installer Python 3.11 via Nix
-   - Créer l'environnement virtuel
-   - Installer toutes les dépendances
-   - Lancer les migrations
-3. Cliquez sur "Try Again" dans la fenêtre de prévisualisation
-4. ✅ Le serveur démarre automatiquement !
+### 🌐 Mode 1 : Project IDX (Recommandé)
+1. Ouvrez le projet dans [Project IDX](https://idx.google.com).
+2. **Setup Automatique** : Le fichier `.idx/dev.nix` configure tout (Python, Redis, Postgres, Venv, Migrations).
+3. **Services** : Redis et Postgres démarrent tout seuls.
+4. ✅ Accédez à votre API sur le port 8000 !
 
 📚 **Documentation complète** : [.idx/STACK_REFERENCE.md](.idx/STACK_REFERENCE.md)
 
