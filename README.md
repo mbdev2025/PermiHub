@@ -16,7 +16,7 @@ PermiHub/
 ## 🛠️ Stack Technique
 
 ### Backend
-- **Django 6.0.2** - Framework web Python
+- **Django 5.1.15** - Framework web Python (⚠️ v6.x nécessite Python 3.12+)
 - **Django REST Framework 3.16.1** - API REST
 - **Wagtail CMS 7.3** - Gestion de contenu
 - **JWT Authentication 5.5.1** - Authentification sécurisée
@@ -45,8 +45,31 @@ PermiHub/
 
 ## 🚀 Démarrage Rapide
 
-### Prérequis
-- Python 3.12+
+> **⚠️ IMPORTANT** : Ce projet supporte **deux modes de développement**
+
+### 🌐 Mode 1 : Project IDX (Recommandé pour débuter)
+**Environnement cloud dans le navigateur - Aucune installation locale requise**
+
+1. Ouvrez le projet dans [Project IDX](https://idx.google.com)
+2. IDX va automatiquement :
+   - Installer Python 3.11 via Nix
+   - Créer l'environnement virtuel
+   - Installer toutes les dépendances
+   - Lancer les migrations
+3. Cliquez sur "Try Again" dans la fenêtre de prévisualisation
+4. ✅ Le serveur démarre automatiquement !
+
+📚 **Documentation complète** : [.idx/STACK_REFERENCE.md](.idx/STACK_REFERENCE.md)
+
+---
+
+### 💻 Mode 2 : Développement Local (Production-ready)
+**Installation classique sur votre machine**
+
+#### Prérequis
+- Python 3.11+ (⚠️ Django 6.x nécessite Python 3.12+)
+- PostgreSQL (optionnel, SQLite par défaut)
+- Redis (pour Celery)
 - Flutter 3.2+
 - Git
 
