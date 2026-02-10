@@ -41,7 +41,8 @@
       enable = true;
       previews = {
         web = {
-          command = ["python3" "backend/manage.py" "runserver" "0.0.0.0:$PORT"];
+          # On utilise le python du venv pour avoir accès aux packages installés (Django, etc.)
+          command = ["backend/venv/bin/python" "backend/manage.py" "runserver" "0.0.0.0:$PORT"];
           manager = "web";
           env = {
             PORT = "8000";
