@@ -41,8 +41,8 @@
       enable = true;
       previews = {
         web = {
-          # On utilise le python du venv pour avoir accès aux packages installés (Django, etc.)
-          command = ["backend/venv/bin/python" "backend/manage.py" "runserver" "0.0.0.0:$PORT"];
+          # On change de répertoire vers backend puis on utilise le python du venv local
+          command = ["sh" "-c" "cd backend && ./venv/bin/python manage.py runserver 0.0.0.0:$PORT"];
           manager = "web";
           env = {
             PORT = "8000";
