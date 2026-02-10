@@ -1,12 +1,9 @@
 { pkgs, ... }: {
-  # Canal de paquets
-  channel = "stable-24.05";
+  # Canal stable-23.11 pour une compatibilité maximale
+  channel = "stable-23.11";
 
-  # Paquets minimaux et stables
   packages = [
     pkgs.python311
-    pkgs.python311Packages.pip
-    pkgs.python311Packages.virtualenv
     pkgs.postgresql
     pkgs.redis
     pkgs.git
@@ -30,31 +27,38 @@
 
     # Workspace configuration
     workspace = {
-      # S'exécute UNE SEULE FOIS à la création
+      # S'exécute à la création du workspace
       onCreate = {
         setup = ''
+          # On s'assure d'être à la racine du projet
+          cd /home/user/workspace || cd /workspace
+
           # Backend Setup
-          cd backend
-          python3 -m venv venv
-          source venv/bin/activate
-          pip install --upgrade pip
-          pip install -r requirements.txt
-          python manage.py migrate
-          
-          # Mobile Setup (Si Flutter est présent)
-          if [ -d "../mobile" ]; then
-            cd ../mobile
-            # flutter pub get # Sera géré par l'extension Flutter
+          if [ -d "backend" ]; then
+            cd backend
+            # Nettoyage si venv corrompu
+            rm -rf venv
+            python3 -m venv venv
+            source venv/bin/activate
+            python3 -m pip install --upgrade pip
+            python3 -m pip install -r requirements.txt
+            python3 manage.py migrate
+            cd ..
           fi
         '';
       };
 
-      # S'exécute à CHAQUE démarrage
+      # S'exécute à chaque démarrage
       onStart = {
         django-server = ''
-          cd backend
-          source venv/bin/activate
-          python manage.py runserver 0.0.0.0:8000
+          if [ -d "backend" ]; then
+            cd backend
+            # On vérifie si le venv existe
+            if [ -d "venv" ]; then
+              source venv/bin/activate
+              python3 manage.py runserver 0.0.0.0:8000
+            fi
+          fi
         '';
       };
     };
@@ -64,7 +68,7 @@
       enable = true;
       previews = {
         web = {
-          command = ["cd" "backend" "&&" "source" "venv/bin/activate" "&&" "python" "manage.py" "runserver" "0.0.0.0:$PORT"];
+          command = ["python3" "backend/manage.py" "runserver" "0.0.0.0:$PORT"];
           manager = "web";
           env = {
             PORT = "8000";
