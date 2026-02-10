@@ -75,6 +75,12 @@ PermiHub/
 
 ### 1. Backend Django
 
+⚠️ **Important** : Ce projet utilise 2 fichiers de dépendances :
+- `requirements.txt` → Python 3.12+ (Antigravity, local, production)
+- `requirements-idx.txt` → Python 3.11 (Project IDX uniquement)
+
+📚 Voir [backend/REQUIREMENTS.md](backend/REQUIREMENTS.md) pour plus de détails.
+
 ```bash
 cd backend
 

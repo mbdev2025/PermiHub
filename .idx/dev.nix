@@ -24,6 +24,7 @@
       "batisteo.vscode-django"
       "Dart-Code.flutter"
       "ms-azuretools.vscode-docker"
+      "redhat.vscode-yaml"
     ];
 
     workspace = {
@@ -39,7 +40,7 @@
           
           # Installation des dépendances
           pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements-idx.txt
           
           # Préparation de la base de données
           python manage.py migrate
