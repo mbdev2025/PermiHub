@@ -1,8 +1,6 @@
 { pkgs, ... }: {
-  # Canal stable pour garantir que les paquets existent
   channel = "stable-23.11";
 
-  # Paquets système essentiels
   packages = [
     pkgs.python311
     pkgs.python311Packages.pip
@@ -17,8 +15,15 @@
     DJANGO_SETTINGS_MODULE = "config.settings";
   };
 
+  services = {
+    redis.enable = true;
+    postgres = {
+      enable = true;
+      package = pkgs.postgresql;
+    };
+  };
+
   idx = {
-    # Extensions VS Code pré-installées
     extensions = [
       "ms-python.python"
       "batisteo.vscode-django"
@@ -28,35 +33,33 @@
     ];
 
     workspace = {
-      # S'exécute AUTOMATIQUEMENT à la création (UNE SEULE FOIS)
       onCreate = {
         setup = ''
-          # On s'assure d'être dans le dossier backend
           cd backend
-          
-          # Création et activation de l'environnement virtuel
           python3 -m venv venv
           source venv/bin/activate
-          
-          # Installation des dépendances
           pip install --upgrade pip
           pip install -r requirements-idx.txt
-          
-          # Préparation de la base de données
+          if [ ! -f .env ]; then
+            cp .env.example .env
+          fi
           python manage.py migrate
           
+          cd ../mobile
+          if command -v flutter > /dev/null; then
+            flutter pub get
+          fi
+          
           cd ..
-          echo "Initialisation terminée avec succès !"
+          echo "✅ PermiHub est maintenant prêt et optimisé pour IDX !"
         '';
       };
     };
 
-    # Prévisualisation Web (Port 8000)
     previews = {
       enable = true;
       previews = {
         web = {
-          # Utilisation du chemin direct vers le python du venv pour éviter l'erreur ModuleNotFound
           command = ["backend/venv/bin/python" "backend/manage.py" "runserver" "0.0.0.0:$PORT"];
           manager = "web";
           env = {
