@@ -1,69 +1,42 @@
 { pkgs, ... }: {
-  # Canal stable-23.11 pour une compatibilité maximale
+  # Canal stable pour garantir que les paquets existent
   channel = "stable-23.11";
 
+  # On installe le strict minimum via Nix pour laisser Pip gérer le reste (plus stable)
   packages = [
     pkgs.python311
+    pkgs.python311Packages.pip
     pkgs.postgresql
     pkgs.redis
     pkgs.git
   ];
 
-  # Configuration de l'environnement
   env = {
     PYTHON_VERSION = "3.11";
     DJANGO_SETTINGS_MODULE = "config.settings";
   };
 
   idx = {
-    # Extensions VS Code
     extensions = [
       "ms-python.python"
-      "ms-python.vscode-pylance"
       "batisteo.vscode-django"
       "Dart-Code.flutter"
-      "Dart-Code.dart-code"
     ];
 
-    # Workspace configuration
     workspace = {
-      # S'exécute à la création du workspace
+      # Installation automatique au premier démarrage
       onCreate = {
         setup = ''
-          # On s'assure d'être à la racine du projet
-          cd /home/user/workspace || cd /workspace
-
-          # Backend Setup
-          if [ -d "backend" ]; then
-            cd backend
-            # Nettoyage si venv corrompu
-            rm -rf venv
-            python3 -m venv venv
-            source venv/bin/activate
-            python3 -m pip install --upgrade pip
-            python3 -m pip install -r requirements.txt
-            python3 manage.py migrate
-            cd ..
-          fi
-        '';
-      };
-
-      # S'exécute à chaque démarrage
-      onStart = {
-        django-server = ''
-          if [ -d "backend" ]; then
-            cd backend
-            # On vérifie si le venv existe
-            if [ -d "venv" ]; then
-              source venv/bin/activate
-              python3 manage.py runserver 0.0.0.0:8000
-            fi
-          fi
+          cd backend
+          python3 -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          python manage.py migrate
         '';
       };
     };
 
-    # Prévisualisation Web
     previews = {
       enable = true;
       previews = {
